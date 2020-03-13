@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+  <meta content="telephone=no" name="format-detection">
+  <meta content="address=no" name="format-detection">
+  <title>test</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    div{
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      padding: 0 15px;
+      margin: 100px auto;
+      max-width: 600px;
+    }
+    input{
+      width: 70%;
+      height: 30px;
+      border: 1px solid #eee;
+      padding-left: 10px;
+      border-right: 0;
+      outline: 0;
+    }
+    button{
+      width: 30%;
+      height: 30px;
+      border: 1px solid #eee;
+      font-size: 14px;
+      text-align: center;
+      background-color: aquamarine;
+      outline: 0;
+    }
+    button:active{
+      background-color: rgb(67, 184, 145);
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <input type="text" id="domain" placeholder="请输入域名">
+    <button id="sure" onclick="getPay()">确定</button>
+  </div>
+  <script>
+    function getPay() {
+      var value = document.getElementById('domain').value;
+      if (value) {
+        window.location.href = "alipays://platformapi/startapp?appId=20000067&url=" + value;
+      } else{
+        alert('请输入域名')
+      }
+    }
+  </script>
+</body>
+</html>

